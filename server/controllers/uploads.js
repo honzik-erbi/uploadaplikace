@@ -33,21 +33,17 @@ exports.getUpload = async (req, res) => {
   }
 };
 
-const uploadFile = imageController.upload.single("imgFile");
+const uploadFile = imageController.upload.single("imageFile");
 
 const saveFileIntoFolder = (req, res, next) => {
-  uploadFile(
-    (req,
-    res,
-    (err) => {
+  uploadFile(req,res,(err) => {
       if (err) {
         console.log(err);
         return res.status(500).send(err);
       }
       console.log("File uploaded");
       next();
-    })
-  );
+    });
 };
 
 const saveIntoDb = async (req, res) => {
